@@ -10,4 +10,13 @@ class ArticleController extends Controller
     {
         return "Halaman Artikel $id";
     }
+    public function product()
+    {
+        return view("product", ['active' => "product"]);
+    }
+
+    //     public function category($id)
+    //     {
+    //         return view("$id", ['active' => "product"]);
+    //     }
 }

@@ -8,6 +8,7 @@ class AboutController extends Controller
 {
     public function about()
     {
-        return "Nama : Zaky Muhammad Ibrahim <br> NIM : 2141720131";
+        // return "Nama : Zaky Muhammad Ibrahim <br> NIM : 2141720131";
+        return view("about", ['active' => "about"]);
     }
 }
