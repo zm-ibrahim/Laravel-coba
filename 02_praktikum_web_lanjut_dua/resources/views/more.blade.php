@@ -3,11 +3,11 @@
 @section('title', 'Dashboard')
 
 @section('content_header')
-    <h1>Dashboard</h1>
+    <h1>Pengalaman Kuliah</h1>
 @stop
 
 @section('content')
-    <p>Welcome to Dashboard</p>
+    <p>Disini adalah halaman Pengalaman kuliah selama di dunia perkuliahan</p>
 @stop
 
 @section('css')
@@ -15,8 +15,7 @@
 @stop
 
 @section('js')
-    <script> console.log('Hi!'); 
-    alert("Selamat Datang !");
+    <script> console.log('Halaman Pengalaman Kuliah'); 
     </script>
 @stop
 
