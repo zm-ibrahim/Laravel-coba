@@ -21,5 +21,5 @@
 @stop
 
 @section('footer')
-    <footer>Ini Footer</footer>
+    <footer>2141720131 | Zaky Muhammad Ibrahim</footer>
 @endsection
