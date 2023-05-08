@@ -16,6 +16,6 @@
 
 @section('footer')
     <p class="text-center">
-        {{ $user->student_id }} | <a class="text-body" href="https://github.com/argyaWicaksana">{{ $user->name }}</a>
+        {{ $user->student_id }} | <a class="text-body" href="https://github.com/zm-ibrahim">{{ $user->name }}</a>
     </p>
 @endsection
