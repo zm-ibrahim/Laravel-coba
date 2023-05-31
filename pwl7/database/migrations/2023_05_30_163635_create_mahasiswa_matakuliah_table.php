@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('mahasiswa_nim');
             $table->unsignedBigInteger('matakuliah_id');
             $table->integer('nilai');
-            $table->foreign('mahasiswa_nim')->references('nim')->on('mahasiswa');
+            $table->foreign('mahasiswa_nim')->references('nim')->on('mahasiswas');
             $table->foreign('matakuliah_id')->references('id')->on('matakuliah');
             $table->timestamps();
         });
