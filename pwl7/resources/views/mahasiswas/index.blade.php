@@ -17,38 +17,41 @@
         </div>
     @endif
 
-    <table class="table table-bordered">
-        <tr>
-            <th>Nim</th>
-            <th>Nama</th>
-            <th>Tanggal Lahir</th>
-            <th>Kelas</th>
-            <th>Jurusan</th>
-            <th>No_Handphone</th>
-            <th>Email</th>
-            <th width="280px">Action</th>
-        </tr>
-        @foreach ($mahasiswas as $Mahasiswa)
+    <div class="table-responsive">
+        <table class="table table-bordered">
             <tr>
-
-                <td>{{ $Mahasiswa->nim }}</td>
-                <td>{{ $Mahasiswa->nama }}</td>
-                <td>{{ $Mahasiswa->tgl_lahir }}</td>
-                <td>{{ $Mahasiswa->kelas }}</td>
-                <td>{{ $Mahasiswa->jurusan }}</td>
-                <td>{{ $Mahasiswa->no_handphone }}</td>
-                <td>{{ $Mahasiswa->email }}</td>
-                <td>
-                    <form action="{{ route('mahasiswas.destroy', $Mahasiswa->nim) }}" method="POST">
-
-                        <a class="btn btn-info" href="{{ route('mahasiswas.show', $Mahasiswa->nim) }}">Show</a>
-                        <a class="btn btn-primary" href="{{ route('mahasiswas.edit', $Mahasiswa->nim) }}">Edit</a>
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-danger">Delete</button>
-                    </form>
-                </td>
+                <th>Nim</th>
+                <th>Nama</th>
+                <th>Tanggal Lahir</th>
+                <th>Kelas</th>
+                <th>Jurusan</th>
+                <th>No_Handphone</th>
+                <th>Email</th>
+                <th width="280px">Action</th>
             </tr>
-        @endforeach
-    </table>
+            @foreach ($mahasiswas as $Mahasiswa)
+                <tr>
+
+                    <td>{{ $Mahasiswa->nim }}</td>
+                    <td>{{ $Mahasiswa->nama }}</td>
+                    <td>{{ $Mahasiswa->tgl_lahir }}</td>
+                    <td>{{ $Mahasiswa->kelas->nama_kelas }}</td>
+                    <td>{{ $Mahasiswa->jurusan }}</td>
+                    <td>{{ $Mahasiswa->no_handphone }}</td>
+                    <td>{{ $Mahasiswa->email }}</td>
+                    <td>
+                        <form action="{{ route('mahasiswas.destroy', $Mahasiswa->nim) }}" method="POST">
+
+                            <a class="btn btn-info" href="{{ route('mahasiswas.show', $Mahasiswa->nim) }}">Show</a>
+                            <a class="btn btn-primary" href="{{ route('mahasiswas.edit', $Mahasiswa->nim) }}">Edit</a>
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                            <a class="btn btn-warning" href="{{ route('mahasiswa.score', $Mahasiswa->nim) }}">Nilai</a>
+                        </form>
+                    </td>
+                </tr>
+            @endforeach
+        </table>
+    </div>
 @endsection

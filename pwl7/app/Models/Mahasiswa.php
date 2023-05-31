@@ -25,9 +25,20 @@ class Mahasiswa extends Model
         'Nim',
         'Nama',
         'tgl_lahir',
-        'Kelas',
+        'kelas_id',
         'Jurusan',
         'No_Handphone',
         'Email',
     ];
+
+    public function kelas()
+    {
+        return $this->belongsTo(Kelas::class);
+    }
+
+    public function mataKuliah()
+    {
+        return $this->belongsToMany(MataKuliah::class, 'mahasiswa_matakuliah', 'mahasiswa_nim', 'matakuliah_id')
+            ->withPivot('nilai');
+    }
 }
