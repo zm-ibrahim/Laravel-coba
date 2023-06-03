@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Mahasiswa;
 use App\Models\Kelas;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class MahasiswaController extends Controller
 {
@@ -35,6 +36,10 @@ class MahasiswaController extends Controller
      */
     public function store(Request $request)
     {
+
+        if ($request->file('foto')) {
+            $foto = $request->file('foto')->store('foto', 'public');
+        }
         //melakukan validasi data
         $request->validate([
             'Nim' => 'required',
@@ -44,6 +49,7 @@ class MahasiswaController extends Controller
             'Jurusan' => 'required',
             'No_Handphone' => 'required',
             'Email' => 'required',
+            'foto' => 'image|file|max:5200',
         ]);
 
         $mahasiswa = new Mahasiswa;
@@ -54,6 +60,7 @@ class MahasiswaController extends Controller
         $mahasiswa->Jurusan = $request->get('Jurusan');
         $mahasiswa->No_Handphone = $request->get('No_Handphone');
         $mahasiswa->Email = $request->get('Email');
+        $mahasiswa->foto = $foto;
 
         $kelas = new Kelas;
         $kelas->id = $request->get('kelas_id');
@@ -72,7 +79,7 @@ class MahasiswaController extends Controller
     public function show($Nim)
     {
         //menampilkan detail data dengan menemukan/berdasarkan Nim Mahasiswa
-        $Mahasiswa = Mahasiswa::with('kelas')->where('nim', $nim)->first();
+        $Mahasiswa = Mahasiswa::with('kelas')->where('nim', $Nim)->first();
         return view('mahasiswas.detail', compact('Mahasiswa'));
     }
 
@@ -82,9 +89,9 @@ class MahasiswaController extends Controller
     public function edit($Nim)
     {
         //menampilkan detail data dengan menemukan berdasarkan Nim Mahasiswa untuk diedit
-        $mahasiswa = Mahasiswa::with('kelas')->where('nim', $Nim)->first();
+        $Mahasiswa = Mahasiswa::with('kelas')->where('nim', $Nim)->first();
         $kelas = Kelas::all(); //Mendapatkan data dari tabel kelas
-        return view('mahasiswas.edit', compact('mahasiswa', 'kelas'));
+        return view('mahasiswas.edit', compact('Mahasiswa', 'kelas'));
     }
 
     /**
@@ -92,6 +99,9 @@ class MahasiswaController extends Controller
      */
     public function update(Request $request, $Nim)
     {
+        if ($request->file('foto')) {
+            $foto = $request->file('foto')->store('foto', 'public');
+        }
         //melakukan validasi data
         $request->validate([
             'Nim' => 'required',
@@ -101,6 +111,7 @@ class MahasiswaController extends Controller
             'Jurusan' => 'required',
             'No_Handphone' => 'required',
             'Email' => 'required',
+            'foto' => 'image|file|max:5200',
         ]);
 
         $mahasiswa = Mahasiswa::with('kelas')->where('nim', $Nim)->first();
@@ -111,6 +122,7 @@ class MahasiswaController extends Controller
         $mahasiswa->Jurusan = $request->get('Jurusan');
         $mahasiswa->No_Handphone = $request->get('No_Handphone');
         $mahasiswa->Email = $request->get('Email');
+        $mahasiswa->foto = $foto;
 
         //jika data berhasil diupdate, akan kembali ke halaman utama
         return redirect()->route('mahasiswas.index')

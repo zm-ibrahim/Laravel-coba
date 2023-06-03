@@ -20,7 +20,8 @@
                             </ul>
                         </div>
                     @endif
-                    <form method="post" action="{{ route('mahasiswas.update', $Mahasiswa->nim) }}" id="myForm">
+                    <form method="post" action="{{ route('mahasiswas.update', $Mahasiswa->nim) }}" id="myForm"
+                        enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                         <div class="form-group">
@@ -42,8 +43,8 @@
                             <label for="Kelas">Kelas</label>
                             <select name="kelas_id" class="form-control" id="">
                                 @foreach ($kelas as $kls)
-                                    <option value="{{ $kls->id }}">
-                                        {{ $mahasiswa->kelas_id == $kls->id ? 'selected' : '' }}>{{ $kls->nama_kelas }}
+                                    <option value="{{ $kls->id }}"
+                                        {{ $Mahasiswa->kelas_id == $kls->id ? 'selected' : '' }}>{{ $kls->nama_kelas }}
                                     </option>
                                 @endforeach
                             </select>
@@ -62,6 +63,11 @@
                             <label for="Email">Email</label>
                             <input type="Email" name="Email" class="form-control" id="Email"
                                 value="{{ $Mahasiswa->email }}" aria-describedby="Email">
+                        </div>
+                        <div class="mb-3">
+                            <label for="Foto">Foto</label>
+                            <input type="file" name="foto" class="form-control" id="Foto"
+                                aria-describedby="Foto">
                         </div>
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </form>

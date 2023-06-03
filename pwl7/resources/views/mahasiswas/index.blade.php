@@ -22,6 +22,7 @@
             <tr>
                 <th>Nim</th>
                 <th>Nama</th>
+                <th>Foto</th>
                 <th>Tanggal Lahir</th>
                 <th>Kelas</th>
                 <th>Jurusan</th>
@@ -34,6 +35,9 @@
 
                     <td>{{ $Mahasiswa->nim }}</td>
                     <td>{{ $Mahasiswa->nama }}</td>
+                    <td>
+                        <img src="{{ asset('storage/' . $Mahasiswa->foto) }}" width="100px" alt="Foto">
+                    </td>
                     <td>{{ $Mahasiswa->tgl_lahir }}</td>
                     <td>{{ $Mahasiswa->kelas->nama_kelas }}</td>
                     <td>{{ $Mahasiswa->jurusan }}</td>
@@ -47,7 +51,7 @@
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger">Delete</button>
-                            <a class="btn btn-warning" href="{{ route('mahasiswa.score', $Mahasiswa->nim) }}">Nilai</a>
+                            <a class="btn btn-warning" href="{{ route('mahasiswas.score', $Mahasiswa->nim) }}">Nilai</a>
                         </form>
                     </td>
                 </tr>
