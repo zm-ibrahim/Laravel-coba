@@ -17,9 +17,9 @@ use Illuminate\Http\Request;
 |
 */
 
-
 Route::resource('mahasiswas', MahasiswaController::class);
 Route::get('mahasiswa/{mahasiswa}/score', [MahasiswaController::class, 'score'])->name('mahasiswas.score');
+Route::get('mahasiswa/{mahasiswa}/cetak_pdf', [MahasiswaController::class, 'cetak_khs'])->name('mahasiswas.cetak_khs');
 Route::get('articles/cetak_pdf', [ArticleController::class, 'cetak_pdf']);
 Route::resource('articles', ArticleController::class);
 

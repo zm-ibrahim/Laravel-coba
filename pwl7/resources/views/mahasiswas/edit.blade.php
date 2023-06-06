@@ -66,8 +66,11 @@
                         </div>
                         <div class="mb-3">
                             <label for="Foto">Foto</label>
-                            <input type="file" name="foto" class="form-control" id="Foto"
-                                aria-describedby="Foto">
+                            <input type="file" name="foto" class="form-control" id="foto"
+                                value="{{ $Mahasiswa->foto }}" ariadescribedby="foto" accept="image/*">
+                            <div class="mt-3">
+                                <img width="100px" src="{{ asset('storage/' . $Mahasiswa->foto) }}">
+                            </div>
                         </div>
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </form>

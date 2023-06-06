@@ -51,11 +51,9 @@
                                 E
                             @endif
                         </td>
+                    </tr>
                 @endforeach
-                </tr>
             </tbody>
         </table>
-        <a class="btn btn-primary" href="{{ route('mahasiswas.cetak_khs', $mahasiswa->nim) }}" target="_blank">Cetak KHS</a>
-        <a class="btn btn-danger" href="{{ url('mahasiswas') }}">Kembali</a>
     </div>
 @endsection

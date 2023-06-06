@@ -6,6 +6,7 @@ use App\Models\Mahasiswa;
 use App\Models\Kelas;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class MahasiswaController extends Controller
 {
@@ -147,5 +148,14 @@ class MahasiswaController extends Controller
             'mahasiswa' => $mahasiswa,
             'matkul' => $matkul
         ]);
+    }
+    public function cetak_khs(Mahasiswa $mahasiswa)
+    {
+        $matkul = $mahasiswa->matakuliah;
+        $pdf = pdf::loadview('mahasiswas.cetak_khs', [
+            'matkul' => $matkul,
+            'mahasiswa' => $mahasiswa,
+        ]);
+        return $pdf->stream();
     }
 }
